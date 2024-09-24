@@ -15,7 +15,7 @@ jobs:
 
     # Playwright が提供する Docker イメージを使用することで、セットアップを簡単にする
     container:
-      image: mcr.microsoft.com/playwright:v1.40.1-focal
+      image: mcr.microsoft.com/playwright:v1.47.2-focal
 
     steps:
       - uses: actions/checkout@v4
