@@ -3,7 +3,9 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "start": "next start"
+    "start": "next start",
+    "test:vrt:screenshots": "playwright test --update-snapshots",
+    "test:vrt:compare": "playwright test"
   },
   "dependencies": {
     "date-fns": "^2.29.3",
@@ -16,5 +18,9 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.47.2",
+    "@types/node": "^22.6.1"
   }
 }
