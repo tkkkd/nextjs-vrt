@@ -1,0 +1,31 @@
+name: screenshot
+
+on: [workflow_dispatch]
+
+jobs:
+  screenshot-prod:
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v3.5.1
+        with:
+          node-version-file: .node-version
+          cache: "npm"
+      - name: install playwright
+        run: |
+          npx playwright install
+          npm ci
+      - name: take screenshots
+        run: npx playwright test --update-snapshots
+        env:
+          BASE_URL: https://nextjs-vrt.vercel.app/
+      - name: Upload failed screenshots
+        uses: actions/upload-artifact@v3
+        with:
+          name: screenshots-${{ github.sha }}
+          path: tests/vrt.test.ts-snapshots
