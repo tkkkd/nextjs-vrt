@@ -19,7 +19,7 @@ jobs:
       - name: install playwright
         run: npx playwright install
       - name: take screenshots
-        run: npm run test:vrt:screenshots
+        run: npx playwright test --update-snapshots
         env:
           BASE_URL: https://nextjs-vrt.vercel.app/
       - name: Upload failed screenshots
